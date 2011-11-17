@@ -1,0 +1,22 @@
+<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+		<div class="login-inside">
+			<div class="login-data">
+				<div class="row clear">
+  					<%= f.label :login, "Login" %>
+  					<%= f.text_field :login, :class => "text", :id => 'user' %>
+				</div>
+				<div class="row clear">
+  					<%= f.label :password, "Senha" %>
+  					<%= f.password_field :password, :class => "text", :id => "password" %>
+				</div>
+  				<%= f.submit "Entrar", :class => "button" %>
+			</div>
+		</div>
+		<div class="login-footer clear" style="display:none">
+		  <% if devise_mapping.rememberable? -%>
+				<span class="remember">
+			<%= f.check_box :remember_me, :class=> "checkbox" %> <%= f.label :remember_me %>
+				</span>
+  		 <% end -%>
+		</div>
+<% end %>

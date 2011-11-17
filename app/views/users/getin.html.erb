@@ -1,0 +1,92 @@
+<%content_for :head do%>
+<script type="text/javascript">
+$(document).ready(function () {
+	$("#form_cadastro").validate({
+		//debug: true,
+			rules: {
+				"user[login]": {required: true, remote: "/users/check_login"},
+				"user[email]": {required: true, email: true, remote: "/users/check_email" },
+				"user[password]": {required: true, minlength: 6},
+				"user[password_confirmation]": {required: true, equalTo: "#user_password" },
+				"user[profile_attributes][cpf]": {required: true, remote: "/users/check_cpf" }
+
+			},
+			messages: {
+				"user[login]" : {
+					remote : "Este login já existe."
+				},
+				"user[email]" : {
+					remote : "Este email já existe."
+				},
+				"user[profile_attributes][cpf]" : {
+					remote : "Este CPF já existe."
+				}
+			}	
+			
+			
+		});
+	});
+</script>
+
+<%end%>
+
+
+<%form_for :user, @user, :url => {:action => "create_new_user"}, :html =>{:class => "form", :multipart => true, :id => "form_cadastro" } do |user_form|%>
+
+<div class="form_bloco">
+	<div class="form_bloco_header">
+		<div class="form_bloco_header_logo">
+			<img src="/images/icone_meu_login.jpg" alt="" />
+		</div>
+		<div class="form_bloco_header_texto">
+			<h5>Meu Login</h5>
+			<p>Este será o eu login para accessar o seu PERFIL</p>
+		</div>
+	</div>
+	<div class="form_bloco_campos">
+		<p>
+		<%= user_form.label :login, "Login"%>
+		<%= user_form.text_field :login, :class => "input-text large" %>
+		</p>
+
+		<p>
+		<%= user_form.label :email, "Email"%>
+		<%= user_form.text_field :email, :class => "input-text large" %>
+		</p>
+
+		<p>
+		<%= user_form.label :password, "Senha"%>
+		<%= user_form.password_field :password, :class => "input-text large" %>
+		</p>
+
+		<p>
+		<%= user_form.label :password_confirmation, "Confirme a senha"%>
+		<%= user_form.password_field :password_confirmation, :class => "input-text large" %>
+		</p>
+	</div>
+</div><!-- /form_blocos -->
+
+
+
+<% user_form.fields_for :profile do |profile_form| %>
+ <%= render :partial => "/profiles/profile_form", :locals => {:f => profile_form}%>
+<%end%>
+
+<%unless current_user.blank?%>
+
+<% user_form.fields_for :photo do |photo_form| %>
+ <%= render :partial => "photo", :locals => {:f => photo_form}%>
+<%end%>
+
+<%end%>
+
+<div class="form_bloco">
+	<div class="form_bloco_campos">
+		<p class="botao">
+			<%=user_form.submit 'Cadastrar', :class => "btn_cadastrar"%>
+		</p>
+		
+	</div>
+</div>
+
+<%end%>

@@ -1,0 +1,46 @@
+<%
+@url = request.request_uri.to_s
+
+
+case
+when @url[0..13] == "/expositores/banners"
+atual_banner = " current"
+when @url[0..12] == "/expositores/paginas"
+atual_paginas = " current"
+when @url[0..14] == "/expositores/galerias"
+atual_galerias = " current"
+when @url[0..15] == "/expositores/cadastros"
+atual_cadastros = " current"
+when @url[0..24] == "/expositores/exportar_cadastros"
+atual_cadastros = " current"
+when @url[0..11] == "/expositores/menus"
+atual_menus = " current"
+when @url[0..27] == "/expositores/noticias?tipo=NOTICIA"
+atual_noticias = " current"
+when @url[0..27] == "/expositores/noticias?tipo=RELEASE"
+atual_release = " current"
+when @url[0..16] == "/expositores/expositors"
+atual_expositor = " current"
+end
+%>
+
+<ul id="main-nav">  <!-- Accordion Menu -->
+		
+	<li>
+		<a href="#" class="nav-top-item<%= atual_expositor%>">
+			MEUS LIVROS
+		</a>
+		<ul>
+			<li><a href="/expositores/livros">Listar Livros</a></li>
+		</ul>
+	</li>
+	<li>
+		<a href="#" class="nav-top-item<%= atual_expositor%>">
+			MEUS EVENTOS
+		</a>
+		<ul>
+			<li><a href="/expositores/eventos">Listar Eventos</a></li>
+		</ul>
+	</li>
+	
+</ul> <!-- End #main-nav -->

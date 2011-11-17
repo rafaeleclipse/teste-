@@ -1,0 +1,49 @@
+
+
+<%if flash[:notice]%>
+<div id="mensagem_de_erro">
+	<p><%=flash[:notice] %></p>
+</div>
+<%end%>
+
+
+
+
+<% form_tag({:controller => "users", :action => "invitation_validation"}, :class => "form") do -%>
+
+<div class="form_bloco">
+	<div class="form_bloco_header">
+		<div class="form_bloco_header_logo">
+			<img src="/images/icone_meu_login.jpg" alt="" />
+		</div>
+		<div class="form_bloco_header_texto">
+			<h5>Convite</h5>
+			<p>Insira o código que foi enviado para seu e-mail.</p>
+		</div>
+	</div>
+	<div class="form_bloco_campos">
+		
+     
+    <p>
+		<label>Código</label>
+		<%= text_field_tag :codigo, '', :class => "input-text large"  %>
+	</p>
+
+		
+</div>
+</div>
+<div class="form_bloco">
+	<div class="form_bloco_campos">
+		<p class="botao">
+			<%=submit_tag 'Enviar', :class => "btn_cadastrar"%>
+		</p>
+
+	</div>
+</div>
+
+
+
+<% end -%>
+
+
+

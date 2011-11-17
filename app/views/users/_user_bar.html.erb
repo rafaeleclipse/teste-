@@ -1,0 +1,7 @@
+Olá,
+ <% if admin_user_signed_in? -%>
+<a href="#"><%= current_admin_user.login %></a><br/> 
+<a href="/admin">Home</a> | <a href="/" target="_blank" title="ver site">Ver o site</a> | <%= link_to "Sair", destroy_admin_user_session_path, { :title => "Sair"} -%>
+<% else -%>
+  <%= link_to "Entrar ",  new_admin_user_session_path,  { :title => "Log in" } %>
+<% end -%>

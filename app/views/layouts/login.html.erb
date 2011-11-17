@@ -1,0 +1,29 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		
+		<title>Gerenciador Bienal do livro</title>
+		
+	
+		<%= stylesheet_link_tag "reset", "style", "invalid" %>
+
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js"></script>
+		<%= javascript_include_tag "simpla", "jquery-wysiwyg"%>
+		
+		
+	</head>
+  
+	<body id="login">
+
+		
+		<div id="login-wrapper" class="png_bg">
+			<div id="login-top">
+			  <h1>Modelo</h1>
+					<img id="logo" src="#" alt="Gerenciador de Conteúdo">
+			</div>
+				<%= yield -%>
+		</div> <!-- End #login-wrapper -->
+	
+	</body>
+</html>
+      

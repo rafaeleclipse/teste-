@@ -1,0 +1,7 @@
+Olá,
+ <% if logged_in? -%>
+<a href="#"><%= current_user.login %></a><br/> 
+<a href="/expositores">Home</a> | <a href="/" target="_blank" title="ver site">Ver o site</a> | <%= link_to "Sair", logout_path, { :title => "Sair"} -%>
+<% else -%>
+  <%= link_to "Entrar ",  login_path,  { :title => "Log in" } %>
+<% end -%>

@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+ 
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+       
+   		<title>Gerenciador Bienal do livro</title>
+   
+		<%= stylesheet_link_tag "reset", "style", "invalid" %>
+		<%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js", "simpla", "jquery-wysiwyg" %>
+		<% javascript_tag do %><%= yield(:jstemplates) %><% end -%>
+	    
+        <%= yield(:head) %>
+		
+	</head>
+
+		<body><div id="body-wrapper">
+
+			<div id="sidebar"><div id="sidebar-wrapper">
+				<h1 id="sidebar-title"><a href="/admin">Gerenciador GL events Brasil</a></h1>
+					<a href="#" style="margin-left:25px"><img id="logo" src="/images/admin/logo_adm.png" alt="" /></a>
+					<div id="profile-links">
+						<%= render :partial => 'users/user_bar'%>
+					</div>        
+				 	<%= render :partial => 'shared/menu_admin'%>
+			</div></div>
+
+			<div id="main-content">
+				<div id="container">
+					<%if flash[:notice] -%>
+						<%= flash[:notice]%>
+					<%end%>		
+					<%= yield %> 
+				</div>
+	    	<div id="footer">
+					<small>
+							&#169; Copyright 2011 Desenvolvido por <a href="http://www.agenciaeclipse.com.br">Agencia Eclipse</a> | <a href="#">Topo</a>
+					</small>
+				</div><!-- End #footer -->
+
+			</div> <!-- End #main-content -->
+
+		</div></body>
+
+
+	</html>

@@ -1,0 +1,32 @@
+<div class="form_bloco">
+	<div class="form_bloco_header">
+		<div class="form_bloco_header_logo">
+			<img src="/images/icone_meu_login.jpg" alt="" />
+		</div>
+		<div class="form_bloco_header_texto">
+			<h5>Logo / Avatar</h5>
+			<p>Esta será a imagem da sua empresa ou seu AVATAR</p>
+		</div>
+	</div>
+	<div class="form_bloco_campos">
+  		<p>
+			<label>
+			  <%if !f.object.new_record? %>
+				  <%=image_tag f.object.photo.url(:thumb), :style=>""%>
+			  <%else%>
+				  <img src="/no_photos/thumb/missing.png" alt="" style="" />
+			  <%end%>
+			</label>
+   
+			<%= f.file_field :photo, :style => "float:left;width:200px;" %>
+    
+		    <span style="display:block;clear:both">
+		    <% unless f.object.new_record? %>
+		<%= f.label :_delete, "remover:", :style=>"padding-top:0px" %>         
+		<%= f.check_box :_delete%>
+		         
+		    <% end %>
+		    </span>
+		  </p>
+	</div>
+</div><!-- /form_blocos -->

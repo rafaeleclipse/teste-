@@ -1,0 +1,82 @@
+<%content_for :head do%>
+<script type="text/javascript">
+$(document).ready(function () {
+	$("#form_cadastro").validate({
+		//debug: true,
+			rules: {
+
+				"user[email]": {required: true, email: true },
+				"user[password]": {minlength: 3},
+				"user[password_confirmation]": {equalTo: "#user_password" },
+				"user[profile_attributes][name]": {required: true},
+				"user[profile_attributes][name_for_badge]": {required: true}
+
+
+			}
+		
+			
+		});
+	});
+</script>
+
+<%end%>
+
+<%form_for:user, @user, :url => {:action => "update_my_profile"}, :html =>{:class => "form", :id => "form_cadastro", :multipart => true } do |user_form|%>
+
+<div class="form_bloco">
+	<div class="form_bloco_header">
+		<div class="form_bloco_header_logo">
+			<%unless current_user.photo.blank?%>
+				<img src="<%=current_user.photo.photo.url(:thumb)%>" alt="" />
+			<%else%>
+				<img src="/images/icone_meu_login.jpg" alt="" />
+			<%end%>
+		</div>
+		<div class="form_bloco_header_texto">
+			<h5>Meu Login</h5>
+			<p>Se não desejar alterar sua senha, deixe os campos em branco</p>
+		</div>
+	</div>
+	<div class="form_bloco_campos">
+
+		<p>
+		<%= user_form.label :email, "Email"%>
+		<%= user_form.text_field :email, :class => "input-text large" %>
+		</p>
+
+		<p>
+		<%= user_form.label :password, "Senha"%>
+		<%= user_form.password_field :password, :class => "input-text large" %>
+		</p>
+
+		<p>
+		<%= user_form.label :password_confirmation, "Confirme a senha"%>
+		<%= user_form.password_field :password_confirmation, :class => "input-text large" %>
+		</p>
+	</div>
+</div><!-- /form_blocos -->
+
+
+
+<% user_form.fields_for :profile do |profile_form| %>
+ <%= render :partial => "/profiles/profile_form", :locals => {:f => profile_form}%>
+<%end%>
+
+<%unless current_user.blank?%>
+
+<% user_form.fields_for :photo do |photo_form| %>
+ <%= render :partial => "photo", :locals => {:f => photo_form}%>
+<%end%>
+
+<%end%>
+
+<div class="form_bloco">
+	<div class="form_bloco_campos">
+		<p class="botao">
+			<%=user_form.submit 'Alterar', :class => "btn_cadastrar"%>
+		</p>
+		
+	</div>
+</div>
+
+<%end%>

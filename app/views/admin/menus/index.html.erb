@@ -1,0 +1,35 @@
+<div class="content-box">
+	<div class="content-box-header">
+		<h3 id="titulosecao">LISTA DE MENUS</h3>
+	</div>
+		<div class="content-box-content">
+        <ul id="menu">
+          <% for menu in Menu.find(:all,:conditions=> ["parent_id IS NULL"]) %>
+            <li><%= h(menu.nome) %> | <%= link_to 'Alterar', edit_admin_menu_path(menu) %> | <%= link_to 'excluir', [:admin,menu], :confirm => 'Tem certeza disso?', :method => :delete %></span>
+              <% unless menu.children.empty? %>
+                <ul id="submenu">
+                  <% for submenu in menu.children %>
+                    <li><%= h(submenu.nome) %> | <%= link_to 'Alterar', edit_admin_menu_path(submenu) %> | <%= link_to 'excluir',[:admin,submenu], :confirm => 'Tem certeza disso?', :method => :delete %></span>
+                      <% unless menu.children.empty? %>
+                        <ul id="submenu2">
+                          <% for submenu2 in submenu.children %>
+                            <li><%= submenu2.nome %> <span>(<%= link_to 'Alterar', edit_admin_menu_path(submenu2) %> <%if @ocara %>ou <%= link_to 'excluir', [:admin,submenu2], :confirm => 'Tem certeza disso?', :method => :delete %> <%end%>)</span></li>
+                          <% end %>
+                        </ul>
+                      <% end %>
+                    </li>
+                  <% end %>
+                </ul>
+              <% end %>
+           </li>
+          <% end %>
+          </ul>
+    </div>
+	<%if @ocara%>
+    <p class="pbutton">
+      <%= link_to 'CRIAR MENU', new_admin_menu_path, :class => "button" %>
+    </p>
+    <%end%>	
+		</div>
+
+

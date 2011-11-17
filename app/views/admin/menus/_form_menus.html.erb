@@ -1,0 +1,15 @@
+<p>
+<%= f.label :parent_id, "Área de acesso" %>
+<%= monta_select_menu(Menu.find(:all,:conditions=> ["parent_id IS NULL"])).html_safe %>
+<%#= f.select :parent_id, Menu.all.map{|a| [a.nome, a.id]}, {:include_blank => true}  %>
+
+</p>
+<p>
+  <%= f.label :nome, "Nome" %>
+  <%= f.text_field :nome, :class => "text-input medium-input" %>
+</p>
+
+<p>
+  <%= f.check_box :ativo, :style => "float:left;"  %>
+  <%= f.label :ativo, "Exibir no site"%>
+</p>

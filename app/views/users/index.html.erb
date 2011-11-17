@@ -1,0 +1,35 @@
+
+<%if flash[:noticie]%>
+<%=flash[:noticie]%>
+<%end%>
+
+<script type="text/javascript">
+
+</script>
+
+			<div class="form_bloco">
+				<div class="form_bloco_header">
+					<div class="form_bloco_header_logo">
+
+						<img src="/images/icone_caixa_entrada.jpg" alt="" />
+
+					</div>
+					<div class="form_bloco_header_texto">
+						<h5>Lista de Pagantes</h5>
+						<p>Usuários cadastrados no sistema ABACOS</p>
+					</div>
+				</div>
+				<div class="form_bloco_campos">
+
+					<%if @users.blank?%>
+					<p style="padding:10px">Nenhum usuário novo</p>
+					<%else%>
+			        <ul id="marcella">
+			        	<%=@users%>
+			        </ul>
+					<%end%>
+				</div>
+			</div>
+
+	
+	

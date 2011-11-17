@@ -1,0 +1,23 @@
+<p>
+  <b>Nome:</b>
+  <%=h @menu.nome %>
+</p>
+
+<p>
+  <b>Nome em Inglês:</b>
+  <%=h @menu.nome_en %>
+</p>
+
+<p>
+  <b>Parent:</b>
+  <%=h @menu.parent_id %>
+</p>
+
+<p>
+  <b>Ativo:</b>
+  <%=h @menu.ativo %>
+</p>
+
+
+<%= link_to 'Edit', edit_admin_menu_path(@menu) %> |
+<%= link_to 'Back', admin_menus_path %>
